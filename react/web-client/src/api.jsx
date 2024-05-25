@@ -1,4 +1,4 @@
-import config from "./assets/config.json";
+import config from "../public/config.json";
 import axios from "axios";
 const linkToApi = config["api-link"] + "api/";
 import { useState } from "react";

@@ -3,7 +3,7 @@ import os
 from pytube import YouTube
 from rpiclient import config
 import json
-import pygame
+import playsound
 from time import sleep
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -24,22 +24,17 @@ def webmToWav(input_path, output_path):
 @csrf_exempt
 def playing(request):
     def playNextSong():
-        songDir = config["songpath"]
-        playlistPath = "./playlist.json"
+        songDir = "E:/Coding/Github/RaspberryPiSongRequest/django/temp/"
+        playlistPath = "E:/Coding/Github/RaspberryPiSongRequest/django/playlist.json"
         with open(playlistPath, "r") as f:
             playlist = json.load(f)
             print(playlist["query"])
             query = playlist["query"]
         now = query.pop(0)
-        pygame.mixer.init()
-        print("Pygame mixer initialized")
-        pygame.mixer.music.load(os.path.join(songDir,now))
-        print("song loaded")
-        pygame.mixer.music.set_volume(1.0)
-        pygame.mixer.music.play()
-
-        while pygame.mixer.music.get_busy() == True:
-            pass
+        print(now)
+        print(os.path.join(songDir,now))
+        playsound(os.path.join(songDir,now))
+        print(now + " is done playing")
 
     while True:
         try:
@@ -60,7 +55,7 @@ def download(request):
     print("checking if in database")
     if link in songlist:
         download = False
-        file_name = songlist[link]
+        output_wav = songlist[link]
         print("song in database")
     else:    
         print("song not in database")

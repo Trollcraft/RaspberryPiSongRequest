@@ -6,9 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 pytube = "*"
-pygame = "*"
 django-cors-headers = "*"
 moviepy = "*"
+playsound = "*"
 
 [dev-packages]
 

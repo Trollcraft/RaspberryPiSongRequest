@@ -4,7 +4,7 @@ import Submit from "./api.jsx";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const linkToApi = config["api-link"] + "api/";
-import config from "./assets/config.json";
+import config from "../public/config.json";
 
 function App() {
   const [songs, setSongs] = useState([]);
